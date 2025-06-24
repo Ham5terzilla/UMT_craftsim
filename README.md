@@ -1,3 +1,3 @@
-Allows to simulate almost all item transformations in game. Enjoy
+Allows to simulate almost all item transformations in game. Enjoy.
 todo:
   better readmy.md
