@@ -2,13 +2,15 @@ from dataclasses import dataclass, field
 from typing import List
 
 from crafting_system.exceptions import ItemValidationError
+from crafting_system import constants
 
 
 @dataclass
 class Item:
-    item_type: str = ""
+    item_type: str = constants.ItemTypes.UNKNOWN
     value: int = 0
     materials: float = 1.0
+    dustwork_type: str = constants.DustTypes.UNKNOWN
     tags: list[str] = field(default_factory=list)
     sequence: list[str] | List = field(default_factory=list)
 

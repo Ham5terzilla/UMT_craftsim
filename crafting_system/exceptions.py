@@ -20,7 +20,7 @@ class InvalidItemTypeError(ItemValidationError):
     """Invalid item type"""
 
     def __init__(self, expected, actual, item=None):
-        message = f"Expected item type '{expected}', got '{actual}'"
+        message = f"Excepted item type '{expected}', got '{actual}'"
         super().__init__(message, item)
         self.expected = expected
         self.actual = actual

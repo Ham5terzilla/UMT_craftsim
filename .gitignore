@@ -1,3 +1,7 @@
 __pycache__
+.vscode
+non_project_stuff
+.gitignore
+test.py
 venv
 old

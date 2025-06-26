@@ -6,11 +6,13 @@ class ItemBuilder:
     def __init__(self, item: Item):
         self.item = item
         self.transformations = []
-    
-    def add_transformation_single(self, transformation: Transformation_Single) -> 'ItemBuilder':
+
+    def add_transformation_single(
+        self, transformation: Transformation_Single
+    ) -> "ItemBuilder":
         self.transformations.append(transformation)
         return self
-    
+
     def execute(self) -> Item:
         current_item = self.item
         for transformation in self.transformations:
