@@ -1,5 +1,5 @@
 from crafting_system.dataclasses.items import Item
-from crafting_system.itemBuilder import ItemBuilder
+from crafting_system.item_builder import ItemBuilder
 from crafting_system.transformations import transformations_single as ts
 from crafting_system.transformations import transformations_multiple as tm
 
