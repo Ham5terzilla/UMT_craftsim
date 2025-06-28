@@ -12,6 +12,10 @@ class ItemError(Exception):
         return self.message
 
 
+class ItemProcessingError(ItemError):
+    """Errors during item processing"""
+
+
 class ItemValidationError(ItemError):
     """Validation-related errors"""
 

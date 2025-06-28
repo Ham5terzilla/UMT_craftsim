@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
 from typing import List
 
-from crafting_system.exceptions import ItemValidationError
 from crafting_system import constants
+from crafting_system.service.exceptions import ItemValidationError
 
 
 @dataclass

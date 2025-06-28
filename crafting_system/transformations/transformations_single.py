@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 
+from crafting_system.constants import ItemTypes, Machines, Tags
 from crafting_system.dataclasses.items import Item
-from crafting_system.mixins import TransformationHelperMixin
-from crafting_system.constants import ItemTypes, Tags, Machines
+from crafting_system.service.mixins import TransformationHelperMixin
 
 
 class Transformation_Single(ABC):

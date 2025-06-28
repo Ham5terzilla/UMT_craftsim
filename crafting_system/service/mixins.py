@@ -1,5 +1,5 @@
 from crafting_system.dataclasses.items import Item
-from crafting_system.exceptions import InvalidItemTypeError, TagConflictError
+from crafting_system.service.exceptions import InvalidItemTypeError, TagConflictError
 
 
 class TransformationHelperMixin:
@@ -12,9 +12,7 @@ class TransformationHelperMixin:
             raise InvalidItemTypeError(excepted_item_type, item.item_type, item)
 
     @staticmethod
-    def validate_multiple_items_types(
-        items: list[Item], excepted_item_types: list[str]
-    ):
+    def validate_multiple_items_types(items: list[Item], excepted_item_types: list[str]):
         """
         for every item in items checking is it equal to at least one type in excepted_item_types\n
         otherwise raises exception
