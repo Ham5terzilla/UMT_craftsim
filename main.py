@@ -1,12 +1,12 @@
 from crafting_system.dataclasses.items import Item
 from crafting_system.item_builder import ItemBuilder
-from crafting_system.transformations import transformations_single as ts
+from crafting_system.item_factory import ItemFactory
 from crafting_system.transformations import transformations_multiple as tm
-
+from crafting_system.transformations import transformations_single as ts
 
 # Usage of project. This code doesn't interacting with code base, can be modified anyhow, it's literally just usage.
 # I decided to not cut this for having example of systems, so, everyone downloaded this garbage from github can start from something before going deeper.
-tin = Item.create_ore("Tin")
+tin = ItemFactory.create_ore("Tin")
 tin_bar = (
     ItemBuilder(tin)
     .add_transformation_single(ts.OreCleanerTransformation())
@@ -37,12 +37,10 @@ print()
 stupid_glass = Item("glass", 30)
 tin_circuit_untuned = tm.CircuitMakerTransformation().transform(stupid_glass, tin_coil)
 tin_circuit = ts.ElectronicTunerTransformation().transform(tin_circuit_untuned)
-tin_tablet = tm.TabletFactoryTransformation().transform(
-    tin_casing, stupid_glass, tin_circuit
-)
+tin_tablet = tm.TabletFactoryTransformation().transform(tin_casing, stupid_glass, tin_circuit)
 print(repr(tin_tablet))
 
-painite = Item.create_gem("Painite")
+painite = ItemFactory.create_gem("Painite")
 painite_stage1_processed = (
     ItemBuilder(painite)
     .add_transformation_single(ts.PolisherTransformation())
@@ -53,9 +51,7 @@ painite_prismatic = tm.PrismaticGemCrucibleTransformation().transform(
     painite_stage1_processed, painite_stage1_processed
 )
 painite_bar = ts.GTBTransformation().transform(painite_prismatic)
-painite_alloy_untempered = tm.AlloyFurnaceTransformation().transform(
-    painite_bar, painite_bar
-)
+painite_alloy_untempered = tm.AlloyFurnaceTransformation().transform(painite_bar, painite_bar)
 painite_alloy = ts.TemperingForgeTransformation().transform(painite_alloy_untempered)
 print(painite_stage1_processed.table_full())
 print(painite_prismatic.table_full())

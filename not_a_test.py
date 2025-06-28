@@ -1,12 +1,12 @@
-from crafting_system.dataclasses.items import Item
-from crafting_system.transformations import transformations_single as ts
-from crafting_system.transformations import transformations_multiple as tm
 from crafting_system.constants import ItemTypes
-
+from crafting_system.dataclasses.items import Item
+from crafting_system.item_factory import ItemFactory
+from crafting_system.transformations import transformations_multiple as tm
+from crafting_system.transformations import transformations_single as ts
 
 ore = "Unobtainium"
 results: list[Item] = []
-ore = Item.create_ore(ore)
+ore = ItemFactory.create_ore(ore)
 results.append(ore)
 ore_cleaned = ts.OreCleanerTransformation().transform(ore)
 results.append(ore_cleaned)
@@ -51,21 +51,13 @@ frame = tm.FrameMakerTransformation().transform(bar, bolts)
 table2.append(frame)
 ring = tm.RingMakerTransformation().transform(gem, coil)
 table2.append(ring)
-stupid_dust_x2 = Item(
-    ItemTypes.BLASTING_POWDER, value=2, materials=0, sequence=["STUPID_DUST_x2"]
-)
-stupid_dust_x3 = Item(
-    ItemTypes.BLASTING_POWDER, value=3, materials=0, sequence=["STUPID_DUST_x2"]
-)
+stupid_dust_x2 = Item(ItemTypes.BLASTING_POWDER, value=2, materials=0, sequence=["STUPID_DUST_x2"])
+stupid_dust_x3 = Item(ItemTypes.BLASTING_POWDER, value=3, materials=0, sequence=["STUPID_DUST_x2"])
 metal_casing = tm.CasingMachineTransformation().transform(frame, bolts, plate)
 table2.append(metal_casing)
-explosives_2x = tm.ExplosivesMakerTransformation().transform(
-    stupid_dust_x2, metal_casing
-)
+explosives_2x = tm.ExplosivesMakerTransformation().transform(stupid_dust_x2, metal_casing)
 table2.append(explosives_2x)
-explosives_3x = tm.ExplosivesMakerTransformation().transform(
-    stupid_dust_x3, metal_casing
-)
+explosives_3x = tm.ExplosivesMakerTransformation().transform(stupid_dust_x3, metal_casing)
 table2.append(explosives_3x)
 stupid_glass = Item(
     item_type=ItemTypes.GLASS, value=40, materials=0, sequence=["STUPID_GLASS_POLISHED"]
@@ -90,13 +82,9 @@ electromagnet = ts.ElectronicTunerTransformation().transform(electromagnet)
 table2.append(electromagnet)
 optics = tm.OpticsMachineTransformation().transform(stupid_lens, pipe)
 table2.append(optics)
-engine = tm.EngineFactoryTransformation().transform(
-    mechanical_parts, pipe, metal_casing
-)
+engine = tm.EngineFactoryTransformation().transform(mechanical_parts, pipe, metal_casing)
 table2.append(optics)
-superconductor = tm.SuperconductorConstructorTransformation().transform(
-    bar, stupid_ceramic_casing
-)
+superconductor = tm.SuperconductorConstructorTransformation().transform(bar, stupid_ceramic_casing)
 table2.append(superconductor)
 amulet = tm.AmuletMakerTransformation().transform(ring, frame, gem)
 table2.append(amulet)
