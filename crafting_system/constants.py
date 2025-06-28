@@ -1,11 +1,24 @@
 """
-Module full of constants
+Module full of constants, contains next classes:
+ItemTypes, for item_type
+Machines, for names of machines
+Tags, for names of item tags
+Ores, for named ores and their values
+Gems, for gems and their values
 """
 
-from enum import StrEnum, auto
+from enum import IntEnum, StrEnum, auto
 
 
 class ItemTypes(StrEnum):
+    """
+    Constant class inherited from StrEnum, as most simple scenario,
+    works like unchangeable dict, for more information check how
+    StrEnum and other Enum's work.\n
+    keys is names of all types of items from game\n
+    values is str, lowercase from key.
+    """
+
     UNKNOWN = auto()
     ORE = auto()
     GEM = auto()
@@ -44,7 +57,68 @@ class ItemTypes(StrEnum):
     POWER_CORE = auto()
 
 
+class Ores(IntEnum):
+    """
+    Constant class inherited from IntEnum, as most simple scenario,
+    works like unchangeable dict, for more information check how
+    IntEnum and other Enum's work.\n
+    keys is names of ores\n
+    values is int, sell value of unmodified corresponding ore from game.
+    """
+
+    TIN = 10
+    IRON = 20
+    LEAD = 30
+    COBALT = 50
+    ALUMINIUM = 65
+    SILVER = 150
+    URANIUM = 180
+    VANADIUM = 240
+    TUNGSTEN = 300
+    GOLD = 350
+    TITANIUM = 400
+    MOLYBDENUM = 600
+    PLUTONIUM = 1000
+    PALLADIUM = 1200
+    MITHRIL = 2000
+    THORIUM = 3200
+    IRIDIUM = 3700
+    ADAMANTIUM = 4500
+    RHODIUM = 15000
+    UNOBTAINIUM = 30000
+
+
+class Gems(IntEnum):
+    """
+    Constant class inherited from IntEnum, as most simple scenario,
+    works like unchangeable dict, for more information check how
+    IntEnum and other Enum's work.\n
+    keys are names of gems\n
+    values are int, sell value of unmodified corresponding gem from game.
+    """
+
+    TOPAZ = 75
+    EMERALD = 200
+    SAPPHIRE = 250
+    RUBY = 300
+    DIAMOND = 1500
+    POUDRETTEITE = 1700
+    ZULTANITE = 2300
+    GRANDIDIERITE = 4500
+    MUSGRAVITE = 5800
+    PAINITE = 12000
+
+
 class DustTypes(StrEnum):
+    """
+    Constant class inherited from StrEnum, as most simple scenario,
+    works like unchangeable dict, for more information check how
+    StrEnum and other Enum's work.\n
+    Currently unused, might be used at moment when dustworks would be implemented.\n
+    keys are names of dust type\n
+    values are str, lowercase from key.
+    """
+
     UNKNOWN = auto()
     METALL = auto()
     STONE = auto()
@@ -52,6 +126,14 @@ class DustTypes(StrEnum):
 
 
 class Tags(StrEnum):
+    """
+    Constant class inherited from StrEnum, as most simple scenario,
+    works like unchangeable dict, for more information check how
+    StrEnum and other Enum's work.\n
+    keys are names of tags found in game on items after machines\n
+    values are writed on own, but to mimic how it's in game every word is capitalized (first symbol is upper, rest is lower).
+    """
+
     # not all tags from game atm
     UNKNOWN = "UNKNOWN"
     ALLOYED = "Alloyed"  # Persists after crusher (tested)
@@ -81,6 +163,14 @@ class Tags(StrEnum):
 
 
 class Machines(StrEnum):
+    """
+    Constant class inherited from StrEnum, as most simple scenario,
+    works like unchangeable dict, for more information check how
+    StrEnum and other Enum's work.\n
+    keys are names of Machines from game\n
+    values are str, lowercase from key.
+    """
+
     UNKNOWN = "UNKNOWN"
     ORE_CLEANER = "Ore Cleaner"
     POLISHER = "Polisher"
