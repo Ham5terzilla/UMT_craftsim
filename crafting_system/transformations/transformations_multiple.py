@@ -41,9 +41,7 @@ class RingMakerTransformation(Transformation_Multiple, TransformationHelperMixin
         )
 
 
-class BlastingPowderChamberTransformation(
-    Transformation_Multiple, TransformationHelperMixin
-):
+class BlastingPowderChamberTransformation(Transformation_Multiple, TransformationHelperMixin):
     def transform(self, metal_dust: Item, stone_dust: Item) -> Item:  # type: ignore
         self.validate_type(metal_dust, "metal dust")
         self.validate_type(stone_dust, "stone dust")
@@ -113,9 +111,7 @@ class CasingMachineTransformation(Transformation_Multiple, TransformationHelperM
         )
 
 
-class PrismaticGemCrucibleTransformation(
-    Transformation_Multiple, TransformationHelperMixin
-):
+class PrismaticGemCrucibleTransformation(Transformation_Multiple, TransformationHelperMixin):
     def transform(self, gem1: Item, gem2: Item) -> Item:  # type: ignore
         self.validate_multiple_items_types([gem1, gem2], [ItemTypes.GEM])
         self.validate_multiple_items_tags_absence([gem1, gem2], [Tags.PRISMATIC])
@@ -178,9 +174,7 @@ class OpticsMachineTransformation(Transformation_Multiple, TransformationHelperM
 class GilderTransformation(Transformation_Multiple, TransformationHelperMixin):
     def transform(self, filigree: Item, jewellery: Item) -> Item:  # type: ignore
         self.validate_type(filigree, ItemTypes.FILIGREE)
-        self.validate_multiple_items_types(
-            [jewellery], [ItemTypes.RING, ItemTypes.AMULET]
-        )
+        self.validate_multiple_items_types([jewellery], [ItemTypes.RING, ItemTypes.AMULET])
         self.validate_tag_absence(jewellery, Tags.GILDED)
 
         totals = self.properties_totals([filigree, jewellery])
@@ -209,9 +203,7 @@ class EngineFactoryTransformation(Transformation_Multiple, TransformationHelperM
         )
 
 
-class SuperconductorConstructorTransformation(
-    Transformation_Multiple, TransformationHelperMixin
-):
+class SuperconductorConstructorTransformation(Transformation_Multiple, TransformationHelperMixin):
     def transform(self, alloyed_bar: Item, ceramic_casing: Item) -> Item:  # type: ignore
         self.validate_type(alloyed_bar, ItemTypes.BAR)
         self.validate_tag_present(alloyed_bar, Tags.ALLOYED)
@@ -260,9 +252,7 @@ class TabletFactoryTransformation(Transformation_Multiple, TransformationHelperM
         )
 
 
-class BlastingPowderRefinerTransformation(
-    Transformation_Multiple, TransformationHelperMixin
-):
+class BlastingPowderRefinerTransformation(Transformation_Multiple, TransformationHelperMixin):
     """Bruh, just skip this bullshit until later, if really need make Item(item_type=ItemTypes.BLASTING_POWDER, value=2, materials=2) or materials = 0 or whatever you want"""
 
     pass
@@ -284,9 +274,7 @@ class LaserMakerTransformation(Transformation_Multiple, TransformationHelperMixi
         )
 
 
-class PowerCoreAssemblerTransformation(
-    Transformation_Multiple, TransformationHelperMixin
-):
+class PowerCoreAssemblerTransformation(Transformation_Multiple, TransformationHelperMixin):
     def transform(  # type: ignore
         self, metal_casing: Item, superconductor: Item, electromagnet: Item
     ) -> Item:

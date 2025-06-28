@@ -104,9 +104,7 @@ class PipeMakerTransformation(Transformation_Single, TransformationHelperMixin):
         )
 
 
-class MechanicalPartsMakerTransformation(
-    Transformation_Single, TransformationHelperMixin
-):
+class MechanicalPartsMakerTransformation(Transformation_Single, TransformationHelperMixin):
     def transform(self, plate: Item) -> Item:  # type: ignore
         self.validate_type(plate, ItemTypes.PLATE)
 

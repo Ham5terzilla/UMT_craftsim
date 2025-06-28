@@ -7,9 +7,7 @@ class ItemBuilder:
         self.item = item
         self.transformations = []
 
-    def add_transformation_single(
-        self, transformation: Transformation_Single
-    ) -> "ItemBuilder":
+    def add_transformation_single(self, transformation: Transformation_Single) -> "ItemBuilder":
         self.transformations.append(transformation)
         return self
 
