@@ -12,11 +12,12 @@ from enum import IntEnum, StrEnum, auto
 
 class ItemTypes(StrEnum):
     """
-    Constant class inherited from StrEnum, as most simple scenario,
-    works like unchangeable dict, for more information check how
-    StrEnum and other Enum's work.\n
-    keys is names of all types of items from game\n
-    values is str, lowercase from key.
+    Represents all item types in the crafting system.\n
+    Automatically generates lowercase string values matching member names.\n
+    Attributes:
+        ORE: value "ore"
+        CLAY_BLOCK: value "clay_block
+        ... (other types)
     """
 
     UNKNOWN = auto()
@@ -59,11 +60,11 @@ class ItemTypes(StrEnum):
 
 class Ores(IntEnum):
     """
-    Constant class inherited from IntEnum, as most simple scenario,
-    works like unchangeable dict, for more information check how
-    IntEnum and other Enum's work.\n
-    keys is names of ores\n
-    values is int, sell value of unmodified corresponding ore from game.
+    Defines named ores with their base sell values.\n
+    Attributes:
+        TIN: Value 10
+        IRON: Value 20
+        ... (other ores)
     """
 
     TIN = 10
@@ -90,11 +91,11 @@ class Ores(IntEnum):
 
 class Gems(IntEnum):
     """
-    Constant class inherited from IntEnum, as most simple scenario,
-    works like unchangeable dict, for more information check how
-    IntEnum and other Enum's work.\n
-    keys are names of gems\n
-    values are int, sell value of unmodified corresponding gem from game.
+    Defines named gems with their base sell values.\n
+    Attributes:
+        TOPAZ: Value 75
+        EMERALD: Value 200
+        ... (other gems)
     """
 
     TOPAZ = 75
@@ -111,27 +112,30 @@ class Gems(IntEnum):
 
 class DustTypes(StrEnum):
     """
-    Constant class inherited from StrEnum, as most simple scenario,
-    works like unchangeable dict, for more information check how
-    StrEnum and other Enum's work.\n
-    Currently unused, might be used at moment when dustworks would be implemented.\n
-    keys are names of dust type\n
-    values are str, lowercase from key.
+    Defines type of dust from crushing item.\n
+    Automatically generates lowercase string values matching member names.\n
+    Currently unused waiting for more information about how game works.\n
+    Attributes:
+        UNKNOWN: value "unknown"
+        METAL: value "metal"
+        ...
     """
 
     UNKNOWN = auto()
-    METALL = auto()
+    METAL = auto()
     STONE = auto()
     GEM = auto()
 
 
 class Tags(StrEnum):
     """
-    Constant class inherited from StrEnum, as most simple scenario,
-    works like unchangeable dict, for more information check how
-    StrEnum and other Enum's work.\n
-    keys are names of tags found in game on items after machines\n
-    values are writed on own, but to mimic how it's in game every word is capitalized (first symbol is upper, rest is lower).
+    Represents all tags possible to appear on items after transformations.\n
+    Value should be capitalized corresponding on how it looks in game.\n
+    Attributes:
+        UNKNOWN: value "UNKNOWN
+        ALLOYED: value "Alloyed"
+        QUALITY_ASSURED: value "Quality Assured"
+        ...
     """
 
     # not all tags from game atm
@@ -164,11 +168,14 @@ class Tags(StrEnum):
 
 class Machines(StrEnum):
     """
-    Constant class inherited from StrEnum, as most simple scenario,
-    works like unchangeable dict, for more information check how
-    StrEnum and other Enum's work.\n
-    keys are names of Machines from game\n
-    values are str, lowercase from key.
+    Represents all Machines existing in game.\n
+    Value should be capitalized corresponding on how it looks in game.\n
+    Attributes:
+        UNKNOWN: value "UNKNOWN
+        POLISHER: value "Polisher"
+        TEMPERING_FORGE: value "Tempering Forge"
+        QUALITY_ASSURANCE_MACHINE: value "Quality Assurance Machine"
+        ...
     """
 
     UNKNOWN = "UNKNOWN"
