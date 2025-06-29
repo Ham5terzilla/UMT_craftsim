@@ -12,10 +12,10 @@ class Transformation_Single(ABC):
 
 
 # Reason why type: ignore everywhere is to surpess mismatch of names of vars of realization of transform
-class OreCleanerTransformation(Transformation_Single, TransformationHelperMixin):
+class OreCleanerTransformation(Transformation_Single):
     def transform(self, ore: Item) -> Item:  # type: ignore
-        self.validate_type(ore, ItemTypes.ORE)
-        self.validate_tag_absence(ore, Tags.CLEANED)
+        TransformationHelperMixin.validate_type(ore, ItemTypes.ORE)
+        TransformationHelperMixin.validate_tag_absence(ore, Tags.CLEANED)
 
         return Item(
             item_type=ore.item_type,
@@ -26,9 +26,9 @@ class OreCleanerTransformation(Transformation_Single, TransformationHelperMixin)
         )
 
 
-class PolisherTransformation(Transformation_Single, TransformationHelperMixin):
+class PolisherTransformation(Transformation_Single):
     def transform(self, any_item: Item) -> Item:  # type: ignore
-        self.validate_tag_absence(any_item, Tags.POLISHED)
+        TransformationHelperMixin.validate_tag_absence(any_item, Tags.POLISHED)
 
         return Item(
             item_type=any_item.item_type,
@@ -39,9 +39,9 @@ class PolisherTransformation(Transformation_Single, TransformationHelperMixin):
         )
 
 
-class OreSmelterTransformation(Transformation_Single, TransformationHelperMixin):
+class OreSmelterTransformation(Transformation_Single):
     def transform(self, ore: Item) -> Item:  # type: ignore
-        self.validate_type(ore, ItemTypes.ORE)
+        TransformationHelperMixin.validate_type(ore, ItemTypes.ORE)
 
         return Item(
             item_type=ItemTypes.BAR,
@@ -52,9 +52,9 @@ class OreSmelterTransformation(Transformation_Single, TransformationHelperMixin)
         )
 
 
-class CoilerTransformation(Transformation_Single, TransformationHelperMixin):
+class CoilerTransformation(Transformation_Single):
     def transform(self, bar: Item) -> Item:  # type: ignore
-        self.validate_type(bar, ItemTypes.BAR)
+        TransformationHelperMixin.validate_type(bar, ItemTypes.BAR)
 
         return Item(
             item_type=ItemTypes.COIL,
@@ -65,9 +65,9 @@ class CoilerTransformation(Transformation_Single, TransformationHelperMixin):
         )
 
 
-class BoltMachineTransformation(Transformation_Single, TransformationHelperMixin):
+class BoltMachineTransformation(Transformation_Single):
     def transform(self, bar: Item) -> Item:  # type: ignore
-        self.validate_type(bar, ItemTypes.BAR)
+        TransformationHelperMixin.validate_type(bar, ItemTypes.BAR)
 
         return Item(
             item_type=ItemTypes.BOLTS,
@@ -78,9 +78,9 @@ class BoltMachineTransformation(Transformation_Single, TransformationHelperMixin
         )
 
 
-class PlateStamperTransformation(Transformation_Single, TransformationHelperMixin):
+class PlateStamperTransformation(Transformation_Single):
     def transform(self, bar: Item) -> Item:  # type: ignore
-        self.validate_type(bar, ItemTypes.BAR)
+        TransformationHelperMixin.validate_type(bar, ItemTypes.BAR)
 
         return Item(
             item_type=ItemTypes.PLATE,
@@ -91,9 +91,9 @@ class PlateStamperTransformation(Transformation_Single, TransformationHelperMixi
         )
 
 
-class PipeMakerTransformation(Transformation_Single, TransformationHelperMixin):
+class PipeMakerTransformation(Transformation_Single):
     def transform(self, plate: Item) -> Item:  # type: ignore
-        self.validate_type(plate, ItemTypes.PLATE)
+        TransformationHelperMixin.validate_type(plate, ItemTypes.PLATE)
 
         return Item(
             item_type=ItemTypes.PIPE,
@@ -104,9 +104,9 @@ class PipeMakerTransformation(Transformation_Single, TransformationHelperMixin):
         )
 
 
-class MechanicalPartsMakerTransformation(Transformation_Single, TransformationHelperMixin):
+class MechanicalPartsMakerTransformation(Transformation_Single):
     def transform(self, plate: Item) -> Item:  # type: ignore
-        self.validate_type(plate, ItemTypes.PLATE)
+        TransformationHelperMixin.validate_type(plate, ItemTypes.PLATE)
 
         return Item(
             item_type=ItemTypes.MECHANICAL_PARTS,
@@ -117,10 +117,10 @@ class MechanicalPartsMakerTransformation(Transformation_Single, TransformationHe
         )
 
 
-class ElectronicTunerTransformation(Transformation_Single, TransformationHelperMixin):
+class ElectronicTunerTransformation(Transformation_Single):
     def transform(self, electronics: Item) -> Item:  # type: ignore
-        self.validate_tag_absence(electronics, Tags.TUNED)
-        self.validate_multiple_items_types(
+        TransformationHelperMixin.validate_tag_absence(electronics, Tags.TUNED)
+        TransformationHelperMixin.validate_multiple_items_types(
             [electronics],
             [
                 ItemTypes.CIRCUIT,
@@ -139,10 +139,10 @@ class ElectronicTunerTransformation(Transformation_Single, TransformationHelperM
         )
 
 
-class GemCutterTransformation(Transformation_Single, TransformationHelperMixin):
+class GemCutterTransformation(Transformation_Single):
     def transform(self, gem: Item) -> Item:  # type: ignore
-        self.validate_type(gem, ItemTypes.GEM)
-        self.validate_tag_absence(gem, Tags.CUT)
+        TransformationHelperMixin.validate_type(gem, ItemTypes.GEM)
+        TransformationHelperMixin.validate_tag_absence(gem, Tags.CUT)
 
         return Item(
             item_type=gem.item_type,
@@ -153,9 +153,9 @@ class GemCutterTransformation(Transformation_Single, TransformationHelperMixin):
         )
 
 
-class BlastFurnaceTransformation(Transformation_Single, TransformationHelperMixin):
+class BlastFurnaceTransformation(Transformation_Single):
     def transform(self, ore: Item) -> Item:  # type: ignore
-        self.validate_type(ore, ItemTypes.ORE)
+        TransformationHelperMixin.validate_type(ore, ItemTypes.ORE)
 
         return Item(
             item_type=ItemTypes.BAR,
@@ -166,9 +166,9 @@ class BlastFurnaceTransformation(Transformation_Single, TransformationHelperMixi
         )
 
 
-class CeramicFurnaceTransformation(Transformation_Single, TransformationHelperMixin):
+class CeramicFurnaceTransformation(Transformation_Single):
     def transform(self, clay_block: Item) -> Item:  # type: ignore
-        self.validate_type(clay_block, ItemTypes.CLAY_BLOCK)
+        TransformationHelperMixin.validate_type(clay_block, ItemTypes.CLAY_BLOCK)
 
         return Item(
             item_type=ItemTypes.CERAMIC_CASING,
@@ -179,10 +179,10 @@ class CeramicFurnaceTransformation(Transformation_Single, TransformationHelperMi
         )
 
 
-class TemperingForgeTransformation(Transformation_Single, TransformationHelperMixin):
+class TemperingForgeTransformation(Transformation_Single):
     def transform(self, bar: Item) -> Item:  # type: ignore
-        self.validate_type(bar, ItemTypes.BAR)
-        self.validate_tag_absence(bar, Tags.TEMPERED)
+        TransformationHelperMixin.validate_type(bar, ItemTypes.BAR)
+        TransformationHelperMixin.validate_tag_absence(bar, Tags.TEMPERED)
 
         return Item(
             item_type=bar.item_type,
@@ -193,9 +193,9 @@ class TemperingForgeTransformation(Transformation_Single, TransformationHelperMi
         )
 
 
-class FiligreeCutterTransformation(Transformation_Single, TransformationHelperMixin):
+class FiligreeCutterTransformation(Transformation_Single):
     def transform(self, plate: Item) -> Item:  # type: ignore
-        self.validate_type(plate, ItemTypes.PLATE)
+        TransformationHelperMixin.validate_type(plate, ItemTypes.PLATE)
 
         return Item(
             item_type=ItemTypes.FILIGREE,
@@ -206,9 +206,9 @@ class FiligreeCutterTransformation(Transformation_Single, TransformationHelperMi
         )
 
 
-class LensCutterTransformation(Transformation_Single, TransformationHelperMixin):
+class LensCutterTransformation(Transformation_Single):
     def transform(self, glass: Item) -> Item:  # type: ignore
-        self.validate_type(glass, ItemTypes.GLASS)
+        TransformationHelperMixin.validate_type(glass, ItemTypes.GLASS)
 
         return Item(
             item_type=ItemTypes.LENS,
@@ -219,9 +219,9 @@ class LensCutterTransformation(Transformation_Single, TransformationHelperMixin)
         )
 
 
-class QAMachineTransformation(Transformation_Single, TransformationHelperMixin):
+class QAMachineTransformation(Transformation_Single):
     def transform(self, any_item: Item) -> Item:  # type: ignore
-        self.validate_tag_absence(any_item, Tags.QUALITY_ASSURED)
+        TransformationHelperMixin.validate_tag_absence(any_item, Tags.QUALITY_ASSURED)
 
         return Item(
             item_type=any_item.item_type,
@@ -232,9 +232,9 @@ class QAMachineTransformation(Transformation_Single, TransformationHelperMixin):
         )
 
 
-class DuplicatorTransformation(Transformation_Single, TransformationHelperMixin):
+class DuplicatorTransformation(Transformation_Single):
     def transform(self, any_item: Item) -> Item:  # type: ignore
-        self.validate_tag_absence(any_item, Tags.DUPLICATED)
+        TransformationHelperMixin.validate_tag_absence(any_item, Tags.DUPLICATED)
 
         return Item(
             item_type=any_item.item_type,
@@ -245,10 +245,10 @@ class DuplicatorTransformation(Transformation_Single, TransformationHelperMixin)
         )
 
 
-class PhilosophersStoneTransformation(Transformation_Single, TransformationHelperMixin):
+class PhilosophersStoneTransformation(Transformation_Single):
     def transform(self, ore: Item) -> Item:  # type: ignore
-        self.validate_type(ore, ItemTypes.ORE)
-        self.validate_tag_absence(ore, Tags.GOLD_INFUSED)
+        TransformationHelperMixin.validate_type(ore, ItemTypes.ORE)
+        TransformationHelperMixin.validate_tag_absence(ore, Tags.GOLD_INFUSED)
 
         return Item(
             item_type=ore.item_type,
@@ -259,11 +259,11 @@ class PhilosophersStoneTransformation(Transformation_Single, TransformationHelpe
         )
 
 
-class OreUpgraderTransformation(Transformation_Single, TransformationHelperMixin):
+class OreUpgraderTransformation(Transformation_Single):
     """Just don't use this after anything, might update later"""
 
     def transform(self, ore: Item) -> Item:  # type: ignore
-        self.validate_type(ore, ItemTypes.ORE)
+        TransformationHelperMixin.validate_type(ore, ItemTypes.ORE)
         if ore.tags:
             raise Exception("DUDE, STOP, DON'T USE ORE UPGRADER AFTER ANYTHING")
 
@@ -279,9 +279,9 @@ class OreUpgraderTransformation(Transformation_Single, TransformationHelperMixin
         )
 
 
-class GTBTransformation(Transformation_Single, TransformationHelperMixin):
+class GTBTransformation(Transformation_Single):
     def transform(self, gem: Item) -> Item:  # type: ignore
-        self.validate_type(gem, ItemTypes.GEM)
+        TransformationHelperMixin.validate_type(gem, ItemTypes.GEM)
 
         return Item(
             item_type=ItemTypes.BAR,
@@ -292,9 +292,9 @@ class GTBTransformation(Transformation_Single, TransformationHelperMixin):
         )
 
 
-class BTGTransformation(Transformation_Single, TransformationHelperMixin):
+class BTGTransformation(Transformation_Single):
     def transform(self, bar: Item) -> Item:  # type: ignore
-        self.validate_type(bar, ItemTypes.BAR)
+        TransformationHelperMixin.validate_type(bar, ItemTypes.BAR)
 
         return Item(
             item_type=ItemTypes.GEM,
@@ -305,7 +305,7 @@ class BTGTransformation(Transformation_Single, TransformationHelperMixin):
         )
 
 
-class CrusherTransformation(Transformation_Single, TransformationHelperMixin):
+class CrusherTransformation(Transformation_Single):
     """
     Actually the worst machine in game.\n
     Dusts are very incosistent with barely documentation in game neither researches from community.
