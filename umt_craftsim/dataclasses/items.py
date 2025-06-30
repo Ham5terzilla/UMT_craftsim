@@ -9,8 +9,8 @@ Each Item tracks:\n
 
 from dataclasses import dataclass, field
 
-from crafting_system import constants
-from crafting_system.service.exceptions import ItemValidationError
+from umt_craftsim import constants
+from umt_craftsim.service.exceptions import ItemValidationError
 
 
 @dataclass

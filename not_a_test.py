@@ -1,8 +1,8 @@
-from crafting_system.constants import ItemTypes
-from crafting_system.dataclasses.items import Item
-from crafting_system.item_factory import ItemFactory
-from crafting_system.transformations import transformations_multiple as tm
-from crafting_system.transformations import transformations_single as ts
+from umt_craftsim.constants import ItemTypes
+from umt_craftsim.dataclasses.items import Item
+from umt_craftsim.item_factory import ItemFactory
+from umt_craftsim.transformations import transformations_multiple as tm
+from umt_craftsim.transformations import transformations_single as ts
 
 ore = "Unobtainium"
 results: list[Item] = []

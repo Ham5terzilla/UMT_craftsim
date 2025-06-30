@@ -1,12 +1,28 @@
-from crafting_system.dataclasses.items import Item
-from crafting_system.service.exceptions import InvalidItemTypeError, TagConflictError
+"""
+Validation and property utilities for crafting transformations.
+
+Provides helper methods for:
+- Type validation (single/multiple items)
+- Tag presence/absence checks
+- Property aggregation
+"""
+from umt_craftsim.dataclasses.items import Item
+from umt_craftsim.service.exceptions import InvalidItemTypeError, TagConflictError
 
 
 class TransformationHelperMixin:
+    """Shared validation and calculation helpers for transformations."""
     @staticmethod
     def validate_type(item: Item, excepted_item_type: str):
         """
-        raise exception if item.item_type not equal to excepted_type
+        Verify item matches expected type.
+
+        Args:
+            item (Item): item for validation
+            excepted_item_type (str): _description_
+
+        Raises:
+            InvalidItemTypeError: _description_
         """
         if item.item_type != excepted_item_type:
             raise InvalidItemTypeError(excepted_item_type, item.item_type, item)

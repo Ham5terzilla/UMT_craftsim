@@ -1,8 +1,8 @@
-from crafting_system.dataclasses.items import Item
-from crafting_system.item_builder import ItemBuilder
-from crafting_system.item_factory import ItemFactory
-from crafting_system.transformations import transformations_multiple as tm
-from crafting_system.transformations import transformations_single as ts
+from umt_craftsim.dataclasses.items import Item
+from umt_craftsim.item_builder import ItemBuilder
+from umt_craftsim.item_factory import ItemFactory
+from umt_craftsim.transformations import transformations_multiple as tm
+from umt_craftsim.transformations import transformations_single as ts
 
 # Usage of project. This code doesn't interacting with code base, can be modified anyhow, it's literally just usage.
 # I decided to not cut this for having example of systems, so, everyone downloaded this garbage from github can start from something before going deeper.

@@ -2,26 +2,25 @@
 Central registry for machine-to-transformation mappings.
 """
 
-from crafting_system.constants import Machines
-from crafting_system.transformations import transformations_multiple, transformations_single
-from crafting_system.transformations.transformations_multiple import Transformation_Multiple
-from crafting_system.transformations.transformations_single import Transformation_Single
+from umt_craftsim.constants import Machines
+from umt_craftsim.transformations import transformations_multiple, transformations_single
+from umt_craftsim.transformations.transformations_multiple import Transformation_Multiple
+from umt_craftsim.transformations.transformations_single import Transformation_Single
 
 
 class TransformationRegistry:
     """Central catalog mapping crafting machines to their transformation logic.
-    
+
     Attributes:
         registry (dict[Machines, Transformation_Single | Transformation_Multiple | None]):
             Complete mapping of all machines to their corresponding transformation classes.
             None indicates unimplemented transformations.
-    
-    ## Methods
-        get_transformation: Retrieves transformation class for a given machine
-    
+
     Example:
+        ```
         frame_maker = TransformationRegistry.get_transformation("Frame Maker")
         frame = frame_maker().transform(bar, bolts)
+        ```
     """
 
     registry = {
@@ -82,7 +81,9 @@ class TransformationRegistry:
     def get_transformation(
         cls, machine_name: str | Machines
     ) -> Transformation_Multiple | Transformation_Single:
-        """Retrieves transformation class for a crafting machine.\n
+        """
+        Retrieves transformation class for a crafting machine.
+
         Provides machine name resolution from both string identifiers and enum members.
 
         Args:
@@ -94,13 +95,15 @@ class TransformationRegistry:
 
         Returns:
             Transformation class (callable) for the specified machine
-        
+
         Example:
-            Using enum\n
+            ```
+            # Using enum:
             smelter = TransformationRegistry.get_transformation(Machines.ORE_SMELTER)
-            
-            Using string\n
+
+            # Using string:
             cleaner = TransformationRegistry.get_transformation("Ore Cleaner")
+            ```
         """
 
         if isinstance(machine_name, str):

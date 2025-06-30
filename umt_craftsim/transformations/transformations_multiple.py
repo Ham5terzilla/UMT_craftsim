@@ -1,13 +1,34 @@
+"""
+Defines transformations that require multiple input items.
+
+This module provides abstract base classes and concrete implementations
+for crafting transformations that process multiple components simultaneously.
+"""
 from abc import ABC, abstractmethod
 
-from crafting_system.constants import ItemTypes, Machines, Tags
-from crafting_system.dataclasses.items import Item
-from crafting_system.service.mixins import TransformationHelperMixin
+from umt_craftsim.constants import ItemTypes, Machines, Tags
+from umt_craftsim.dataclasses.items import Item
+from umt_craftsim.service.mixins import TransformationHelperMixin
 
 
 class Transformation_Multiple(ABC):
+    """
+    Abstract base class for transformations requiring multiple input items.
+    
+    Subclasses must implement the transform() method to define multi-item
+    transformation logic.
+    """
     @abstractmethod
     def transform(self, *components: Item) -> Item:
+        """
+        Process multiple items into a new transformed item.
+        
+        Args:
+            *components: Variable number of input Item objects
+            
+        Returns:
+            New Item resulting from the transformation
+        """
         pass
 
 

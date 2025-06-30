@@ -1,19 +1,49 @@
+"""
+Defines transformations that process a single input item.
+
+This module provides abstract base classes and concrete implementations
+for crafting transformations that operate on individual items.
+"""
 from abc import ABC, abstractmethod
 
-from crafting_system.constants import ItemTypes, Machines, Tags
-from crafting_system.dataclasses.items import Item
-from crafting_system.service.mixins import TransformationHelperMixin
+from umt_craftsim.constants import ItemTypes, Machines, Tags
+from umt_craftsim.dataclasses.items import Item
+from umt_craftsim.service.mixins import TransformationHelperMixin
 
 
 class Transformation_Single(ABC):
+    """
+    Abstract base class for single-item transformations.
+    
+    Subclasses must implement the `transform()` method to define single-item
+    transformation logic.
+    """
     @abstractmethod
     def transform(self, item: Item) -> Item:
+        """
+        Process a single item into a new transformed item.
+        
+        Args:
+            item: Input Item object to transform
+            
+        Returns:
+            New Item resulting from the transformation
+        """
         pass
 
 
 # Reason why type: ignore everywhere is to surpess mismatch of names of vars of realization of transform
 class OreCleanerTransformation(Transformation_Single):
     def transform(self, ore: Item) -> Item:  # type: ignore
+        """
+        transform ore -> ore with Cleaned tag
+
+        Args:
+            ore (Item): item with type Ore without tag Cleaned
+
+        Returns:
+            Item: item with tag Cleaned and +10 value
+        """
         TransformationHelperMixin.validate_type(ore, ItemTypes.ORE)
         TransformationHelperMixin.validate_tag_absence(ore, Tags.CLEANED)
 

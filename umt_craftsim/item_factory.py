@@ -2,12 +2,12 @@
 Factory for creating game items with predefined names and recipes
 """
 
-from crafting_system.constants import Gems, ItemTypes, Machines, Ores
-from crafting_system.dataclasses.items import Item
-from crafting_system.service.exceptions import ItemProcessingError
-from crafting_system.service.mixins import TransformationHelperMixin
-from crafting_system.transformations import transformations_multiple as tmultiple
-from crafting_system.transformations import transformations_single as tsingle
+from umt_craftsim.constants import Gems, ItemTypes, Machines, Ores
+from umt_craftsim.dataclasses.items import Item
+from umt_craftsim.service.exceptions import ItemProcessingError
+from umt_craftsim.service.mixins import TransformationHelperMixin
+from umt_craftsim.transformations import transformations_multiple as tmultiple
+from umt_craftsim.transformations import transformations_single as tsingle
 
 
 class ItemFactory:
