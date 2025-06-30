@@ -6,23 +6,29 @@ Provides helper methods for:
 - Tag presence/absence checks
 - Property aggregation
 """
+
 from umt_craftsim.dataclasses.items import Item
-from umt_craftsim.service.exceptions import InvalidItemTypeError, TagConflictError
+from umt_craftsim.service.exceptions import InvalidItemTypeError, TagConflictError, TagMissingError
 
 
 class TransformationHelperMixin:
-    """Shared validation and calculation helpers for transformations."""
+    """
+    Shared validation and calculation helpers for transformations.
+
+    All methods are static and don't require class instantiation.
+    """
+
     @staticmethod
     def validate_type(item: Item, excepted_item_type: str):
         """
-        Verify item matches expected type.
+        Verify an item matches a specific expected type.
 
         Args:
-            item (Item): item for validation
-            excepted_item_type (str): _description_
+            item (Item): Item to validate
+            expected_item_type (str): Required item type constant (from ItemTypes)
 
         Raises:
-            InvalidItemTypeError: _description_
+            InvalidItemTypeError: If item type doesn't match expected type
         """
         if item.item_type != excepted_item_type:
             raise InvalidItemTypeError(excepted_item_type, item.item_type, item)
@@ -30,8 +36,14 @@ class TransformationHelperMixin:
     @staticmethod
     def validate_multiple_items_types(items: list[Item], excepted_item_types: list[str]):
         """
-        for every item in items checking is it equal to at least one type in excepted_item_types\n
-        otherwise raises exception
+        Verify no items in a list have any of the prohibited tags.
+
+        Args:
+            items (list[Item]): List of items to check
+            tags (list[str]): List of prohibited tag constants
+
+        Raises:
+            TagConflictError: If any item contains any prohibited tag
         """
 
         for item in items:
@@ -45,7 +57,14 @@ class TransformationHelperMixin:
     @staticmethod
     def validate_tag_absence(item: Item, tag: str):
         """
-        raise exception if item.tags contains tag
+        Verify an item does NOT have a specific tag.
+
+        Args:
+            item (Item): Item to check
+            tag (str): Tag constant (from Tags) that should be absent
+
+        Raises:
+            TagConflictError: If the prohibited tag is present
         """
         if tag in item.tags:
             raise TagConflictError(tag, item)
@@ -53,7 +72,14 @@ class TransformationHelperMixin:
     @staticmethod
     def validate_multiple_items_tags_absence(items: list[Item], tags: list[str]):
         """
-        raise exception if any of items contains any of tags
+        Verify no items in a list have any of the prohibited tags.
+
+        Args:
+            items (list[Item]): List of items to check
+            tags (list[str]): List of prohibited tag constants
+
+        Raises:
+            TagConflictError: If any item contains any prohibited tag
         """
         for item in items:
             for tag in tags:
@@ -63,28 +89,51 @@ class TransformationHelperMixin:
     @staticmethod
     def validate_tag_present(item: Item, tag: str):
         """
-        raise exception if item.tags doesn't contains tag
+        Verify an item HAS a specific required tag.
+
+        Args:
+            item (Item): Item to check
+            tag (str): Required tag constant (from Tags)
+
+        Raises:
+            TagMissingError: If the required tag is absent
         """
         if tag not in item.tags:
-            raise TagConflictError(tag, item)
+            raise TagMissingError(tag, item)
 
     @staticmethod
     def validate_multiple_items_tags_present(items: list[Item], tags: list[str]):
         """
-        raice exception if any of items doesn't contains any of tags
+        Verify all items have all required tags.
+
+        Args:
+            items (list[Item]): List of items to check
+            tags (list[str]): List of required tag constants
+
+        Raises:
+            TagMissingError: If any item is missing any required tag
         """
         for item in items:
             for tag in tags:
                 if tag not in item.tags:
-                    raise TagConflictError(tag, item)
+                    raise TagMissingError(tag, item)
 
     @staticmethod
     def properties_totals(items: list[Item]) -> Item:
         """
-        Return new Item with sumed properties of all items\n
-        I'm shy of it >_<\n
-        Might rework at some day. Or newer. Who knows.\n
-        purpose of why it return Item instead of dict is cus I was unable to properly make type hint for this func
+        Aggregate properties from multiple items into a new summary item.
+
+        Creates a new Item with:
+        - Value: Sum of all item values
+        - Materials: Sum of all material costs
+        - Tags: Union of all unique tags
+        - Sequence: List of all item sequences
+
+        Args:
+            items: List of items to aggregate
+
+        Returns:
+            Item: New item containing aggregated properties
         """
         return Item(
             value=sum(item.value for item in items),
