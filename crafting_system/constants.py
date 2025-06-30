@@ -114,7 +114,9 @@ class DustTypes(StrEnum):
     """
     Defines type of dust from crushing item.\n
     Automatically generates lowercase string values matching member names.\n
-    Currently unused waiting for more information about how game works.\n
+    Based on research, thanks a lot to Aprilstar, who made most of research,\n
+    in game itself dust type can't be calculated until we simulate input sides\n
+    plus the only place where it matter is when we making blasting chamber.\n
     Attributes:
         UNKNOWN: value "unknown"
         METAL: value "metal"
@@ -124,7 +126,7 @@ class DustTypes(StrEnum):
     UNKNOWN = auto()
     METAL = auto()
     STONE = auto()
-    GEM = auto()
+    OTHER = auto()
 
 
 class Tags(StrEnum):
