@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-from typing import List
 
 from crafting_system import constants
 from crafting_system.service.exceptions import ItemValidationError
@@ -12,7 +11,7 @@ class Item:
     materials: float = 1.0
     dustwork_type: str = constants.DustTypes.UNKNOWN
     tags: list[str] = field(default_factory=list)
-    sequence: list[str] | List = field(default_factory=list)
+    sequence: list[str] | list = field(default_factory=list)
 
     def __post_init__(self):
         if self.materials < 0:
@@ -20,7 +19,7 @@ class Item:
 
     @property
     def value_per_materials(self) -> float:
-        return self.value / self.materials if self.materials else 0
+        return self.value / self.materials if self.materials != 0 else 0
 
     def short_sequence(self) -> str:
         short_seq = "no sequence"
