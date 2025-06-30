@@ -6,10 +6,10 @@ from crafting_system.service.exceptions import ItemValidationError
 
 @dataclass
 class Item:
-    item_type: str = constants.ItemTypes.UNKNOWN
+    item_type: str = constants.ItemTypes.UNKNOWN.value
     value: int = 0
     materials: float = 1.0
-    dustwork_type: str = constants.DustTypes.UNKNOWN
+    dustwork_type: str = constants.DustTypes.UNKNOWN.value
     tags: list[str] = field(default_factory=list)
     sequence: list[str] | list = field(default_factory=list)
 
@@ -36,7 +36,7 @@ class Item:
                 short_seq = short_seq[:-1]
         return short_seq
 
-    def __str__(self):
+    def __str__(self) -> str:
         shorter_seq = "no sequence"
         if self.sequence:
             shorter_seq = self.sequence[-1]
